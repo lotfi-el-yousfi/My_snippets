@@ -1,0 +1,44 @@
+<templateSet group="MySpringConfig">
+  <template name="99config_eureka server" value="eureka:&#10;  instance:&#10;    hostname: localhost&#10;  client:&#10;    register-with-eureka: false&#10;    fetch-registry: false&#10;    service-url:&#10;      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/" description="eureka server config" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="99config_eureka client" value="eureka:&#10;  instance:&#10;    hostname: localhost&#10;  client:&#10;    service-url:&#10;      defaultZone: http://localhost:8761/eureka" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="99config_jpa_datasource" value="spring:&#10;  datasource:&#10;    driver-class-name: org.postgresql.Driver&#10;    url: jdbc:postgresql://localhost:5432/students&#10;    username: username&#10;    password: password&#10;  jpa:&#10;    hibernate:&#10;      ddl-auto: create&#10;    database: postgresql&#10;    database-platform: org.hibernate.dialect.PostgreSQLDialect" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="99config_tracing_management" value="management:&#10;  tracing:&#10;    sampling:&#10;      probability: 1.0&#10;" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="99config_client_loadconfi" value="spring:&#10;  config:&#10;    import: optional:configserver:http://localhost:8888" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="99Config_Server" value="spring:&#10;  profiles:&#10;    active: native&#10;  application:&#10;    name: config-server&#10;  cloud:&#10;    config:&#10;      server:&#10;        native:&#10;          search-locations: classpath:/configurations" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="99config_gateway" value="server:&#10;  port: 8222&#10;spring:&#10;  application:&#10;    name: gateway&#10;&#10;eureka:&#10;  client:&#10;    register-with-eureka: false&#10;&#10;&#10;spring:&#10;  cloud:&#10;    gateway:&#10;      discovery:&#10;        locator:&#10;          enabled: true&#10;      routes:&#10;        - id: students&#10;          uri: http://localhost:8090&#10;          predicates:&#10;            - Path=/api/v1/students/**&#10;        - id: schools&#10;          uri: http://localhost:8070&#10;          predicates:&#10;            - Path=/api/v1/schools/**&#10;            &#10;            &#10;management:&#10;  tracing:&#10;    sampling:&#10;      probability: 1.0" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="99config_init" value="server:&#10;  port: $port$&#10;spring:&#10;  application:&#10;    name: $app_name$" description="app name/port" toReformat="false" toShortenFQNames="true">
+    <variable name="port" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="app_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+</templateSet>

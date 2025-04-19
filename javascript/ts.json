@@ -1,0 +1,68 @@
+{
+  "TS Function": {
+    "prefix": "99TSFunction",
+    "body": [
+      "function ${functionName}(${variable}: ${type} ): ${returnType} {",
+      "  return ${returnValue};",
+      "}"
+    ],
+    "description": "TypeScript Function"
+  },
+  "TS Interfaces": {
+    "prefix": "99TSInterfaces",
+    "body": [
+      "export interface ${InterfaceName} {",
+      "  ${key}: ${value};",
+      "}"
+    ],
+    "description": "TypeScript Interfaces"
+  },
+  "TS Generics": {
+    "prefix": "99TSGenerics",
+    "body": [
+      "function identity<T>(arg: T): T {",
+      "  return arg;",
+      "}"
+    ],
+    "description": "TypeScript Generics"
+  },
+  "TS Enums": {
+    "prefix": "99TSEnums",
+    "body": [
+      "enum Color {",
+      "  Red,",
+      "  Green,",
+      "  Blue,",
+      "}"
+    ],
+    "description": "TypeScript Enums"
+  },
+  "TS TypeAliases": {
+    "prefix": "99TSTypeAliases",
+    "body": [
+      "type Point = { x: number; y: number };",
+      "const point: Point = { x: 10, y: 20 };"
+    ],
+    "description": "TypeScript Type Aliases"
+  },
+  "TS Tuples": {
+    "prefix": "99TSTuples",
+    "body": [
+      "let tuple: [string, number] = ['Alice', 30];"
+    ],
+    "description": "TypeScript Tuples"
+  },
+  "TS TypeGuards": {
+    "prefix": "99TSTypeGuards",
+    "body": [
+      "function printValue(value: string | number) {",
+      "  if (typeof value === 'string') {",
+      "    console.log(`String: ${value}`);",
+      "  } else {",
+      "    console.log(`Number: ${value}`);",
+      "  }",
+      "}"
+    ],
+    "description": "TypeScript Type Guards"
+  }
+}

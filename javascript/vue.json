@@ -1,0 +1,107 @@
+{
+  "99 DefineProps": {
+    "prefix": "99vueDefineProps",
+    "body": [
+      " const props = defineProps({",
+      "modalValue: {",
+      "type: String,",
+      "required: true,",
+      "},",
+      "propValue: {",
+      "type: String,",
+      "required: true,",
+      "},",
+      "});"
+    ],
+    "description": "99 Vue.js 3 Define Props"
+  },
+  "99 DefineEmits": {
+    "prefix": "99vueDefineEmits",
+    "body": [
+      "// Define Emits",
+      "const emit = defineEmits();"
+    ],
+    "description": "99 Vue.js 3 Define Emits"
+  },
+  "99 Reactive": {
+    "prefix": "99vueReactive",
+    "body": [
+      "// Reactive",
+      "const data = reactive({",
+      "  prop1: 'Hello',",
+      "  prop2: 42,",
+      "});"
+    ],
+    "description": "99 Vue.js 3 Reactive"
+  },
+  "99 Computed": {
+    "prefix": "99VueComputed",
+    "body": [
+      "// Computed properties",
+      "const $1 = computed(() => $2);"
+    ],
+    "description": "99 Vue.js 3 Computed Properties"
+  },
+  "99 Methods": {
+    "prefix": "99VueMethods",
+    "body": [
+      "// Methods",
+      "function greet() {",
+      "  console.log(`Hello, ${name.value}!`);",
+      "}"
+    ],
+    "description": "99 Vue.js 3 Methods"
+  },
+  "99 Lifecycle": {
+    "prefix": "99VueLifecycle",
+    "body": [
+      "// Lifecycle hooks",
+      "onMounted(() => {",
+      "  console.log('Component mounted');",
+      "});"
+    ],
+    "description": "99 Vue.js 3 Lifecycle Hooks"
+  },
+  "99 Refs": {
+    "prefix": "99VueRefs",
+    "body": [
+      "// Refs",
+      "const myRef = ref(null);"
+    ],
+    "description": "99 Vue.js 3 Refs"
+  },
+  "99 Watch": {
+    "prefix": "99VueWatch",
+    "body": [
+      "// Watchers",
+      "watch(name, (newVal, oldVal) => {",
+      "  console.log(`Name changed from ${oldVal} to ${newVal}`);",
+      "});"
+    ],
+    "description": "99 Vue.js 3 Watchers"
+  },
+  "99vuemodelvalue": {
+    "prefix": "99vuemodelvalue",
+    "body": [
+      "const { modelValue } = defineProps(['modelValue']);",
+      "const emit = defineEmits();",
+      "",
+      "const internalValue = ref(modelValue);",
+      "",
+      "  emit('update:modelValue', internalValue.value);"
+    ],
+    "description": "99vuemodelvalue"
+  },
+  "vue3": {
+    "prefix": "99vue3_setup_ts",
+    "body": [
+      "<template>",
+      "  <h1>${2:placeholder}</h1>",
+      "</template>",
+      "<script setup lang=\"ts${1:delete}\">",
+      "</script>",
+      ""
+    ],
+    "description": "vue3"
+  }
+}

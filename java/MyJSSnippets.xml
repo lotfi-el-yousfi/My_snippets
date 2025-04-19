@@ -1,0 +1,17 @@
+<templateSet group="MyJSSnippets">
+  <template name="clg" value="console.log($code$)" description="console.log()" toReformat="false" toShortenFQNames="true">
+    <variable name="code" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="Vue" value="true" />
+    </context>
+  </template>
+  <template name="99pinia_store" value="import { defineStore } from 'pinia'&#10;&#10;export const useTodoListStore = defineStore('todoList', {&#10;  state: () =&gt; ({&#10;    todoList: [],&#10;    id: 0&#10;  }),&#10;  actions: {&#10;    addTodo(item) {&#10;      this.todoList.push({ item, id: this.id++, completed: false })&#10;    },&#10;    deleteTodo(itemId) {&#10;      this.todoList = this.todoList.filter((object) =&gt; {&#10;        return object.id !== itemId&#10;      })&#10;    },&#10;    toggleCompleted(idToFind) {&#10;      const todo = this.todoList.find((obj) =&gt; obj.id === idToFind)&#10;      if (todo) {&#10;        todo.completed = !todo.completed&#10;      }&#10;    }&#10;  }&#10;})" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="HTML" value="true" />
+      <option name="JAVA_SCRIPT" value="true" />
+      <option name="TypeScript" value="true" />
+      <option name="Vue" value="true" />
+    </context>
+  </template>
+</templateSet>

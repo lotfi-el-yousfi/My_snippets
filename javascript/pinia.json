@@ -1,0 +1,90 @@
+{
+  "": {
+    "prefix": "99pinia_sotre_2",
+    "body": [
+      "import { defineStore } from 'pinia'",
+      "",
+      "export const useTodoListStore = defineStore('todoList', {",
+      "  state: () => ({",
+      "    todoList: [],",
+      "    id: 0",
+      "  }),",
+      "  actions: {",
+      "    addTodo(item) {",
+      "      this.todoList.push({ item, id: this.id++, completed: false })",
+      "    },",
+      "    deleteTodo(itemId) {",
+      "      this.todoList = this.todoList.filter((object) => {",
+      "        return object.id !== itemId",
+      "      })",
+      "    },",
+      "    toggleCompleted(idToFind) {",
+      "      const todo = this.todoList.find((obj) => obj.id === idToFind)",
+      "      if (todo) {",
+      "        todo.completed = !todo.completed",
+      "      }",
+      "    }",
+      "  }",
+      "})"
+    ],
+    "description": ""
+  },
+  "99PiniaStore": {
+    "prefix": "99PiniaStore_3",
+    "body": [
+      "import { defineStore } from 'pinia';",
+      "import { ref, computed } from 'vue';",
+      "",
+      "export const use${1:StoreName} = defineStore('${1:storeName}', () => {",
+      "  // State",
+      "  const ${2:stateName} = ref(${3:null});",
+      "",
+      "  // Getters",
+      "  const ${4:getterName} = computed(() => ${5:${2:stateName}.value});",
+      "",
+      "  // Actions",
+      "  function ${6:actionName}(${7:payload}) {",
+      "    ${2:stateName}.value = ${7:payload};",
+      "  }",
+      "",
+      "  return {",
+      "    ${2:stateName},",
+      "    ${4:getterName},",
+      "    ${6:actionName}",
+      "  };",
+      "});"
+    ],
+    "description": "pinia store"
+  },
+  "99PiniaState": {
+    "prefix": "99PiniaState",
+    "body": [
+      "  state: () => ({",
+      "    counter: 0,",
+      "  }),"
+    ],
+    "description": "99 Pinia State Definition"
+  },
+  "99PiniaGetters": {
+    "prefix": "99PiniaGetters",
+    "body": [
+      "  getters: {",
+      "    doubleCounter(state) {",
+      "      return state.counter * 2;",
+      "    },",
+      "  },"
+    ],
+    "description": "99 Pinia Getters Definition"
+  },
+  "99PiniaActions": {
+    "prefix": "99PiniaActions",
+    "body": [
+      "  actions: {",
+      "    ${1:func}() {",
+      "      ${2:code}",
+      "    },",
+      "  },"
+    ],
+    "description": "99 Pinia Actions Definition"
+  }
+}

@@ -1,0 +1,323 @@
+{
+  "Jest Component Test with Mounting (TypeScript)": {
+    "prefix": "jest_complet_ts",
+    "body": [
+      "import { mount, VueWrapper } from '@vue/test-utils';",
+      "import ${1:ComponentName} from '@/components/${1:ComponentName}.vue';",
+      "import { ${2:PropType} } from '@/types/${2:PropType}';",
+      "import { ${3:StateType} } from '@/store/types'; // Example import for state type",
+      "",
+      "describe('<${1:ComponentName} />', () => {",
+      "  let wrapper: VueWrapper<any>;",
+      "  const propsData = {",
+      "    ${4:propName}: '${5:propValue}' as ${2:PropType},",
+      "    // Add more props as needed",
+      "  };",
+      "  const stubs = {",
+      "    ${6:ChildComponent}: true,",
+      "    // Add more stubs as needed",
+      "  };",
+      "  const mocks = {",
+      "    $route: {",
+      "      params: {",
+      "        ${7:paramName}: '${8:paramValue}',",
+      "        // Add more route params as needed",
+      "      },",
+      "    },",
+      "    $router: {",
+      "      push: jest.fn(),",
+      "    },",
+      "    $store: {",
+      "      state: {",
+      "        ${9:moduleName}: {",
+      "          ${10:stateProp}: '${11:stateValue}' as ${3:StateType}['${9:moduleName}']['${10:stateProp}'],",
+      "          // Add more state properties as needed",
+      "        },",
+      "      },",
+      "      getters: {",
+      "        '${12:moduleName}/${13:getterName}': (state: ${3:StateType}) => state.${9:moduleName}.${10:stateProp},",
+      "        // Add more getters as needed",
+      "      },",
+      "      dispatch: jest.fn(),",
+      "      commit: jest.fn(),",
+      "    },",
+      "    $t: jest.fn((key: string) => key), // Mock for i18n",
+      "    // Add more mocks as needed",
+      "  };",
+      "  const provide = {",
+      "    ${14:injectionKey}: '${15:injectionValue}',",
+      "    // Add more provide values as needed",
+      "  };",
+      "",
+      "  beforeEach(() => {",
+      "    wrapper = mount(${1:ComponentName}, {",
+      "      propsData,",
+      "      stubs,",
+      "      mocks,",
+      "      global: {",
+      "        mocks,",
+      "        provide,",
+      "      },",
+      "    });",
+      "  });",
+      "",
+      "  afterEach(() => {",
+      "    wrapper.unmount();",
+      "  });",
+      "",
+      "  it('renders the component', () => {",
+      "    expect(wrapper.exists()).toBe(true);",
+      "  });",
+      "",
+      "});",
+      ""
+    ],
+    "description": "Jest component test with mounting (TypeScript), props, stubs, mocks, and provide"
+  },
+  "99JESTTest": {
+    "prefix": "99JESTTest",
+    "body": [
+      "it('$1', () => {",
+      "    const wrapper = mount(MyComponent);",
+      "  const element = wrapper.find('$2');",
+      "  expect(element.exists()).toBe(true);",
+      "  expect(element.text()).toBe('$3');",
+      "  expect(element.attributes('$4')).toBe('$5');",
+      "  element.trigger('click');",
+      " });"
+    ],
+    "description": "99JESTTest"
+  },
+  "99JestServiceTest": {
+    "prefix": "99JestServiceTest",
+    "body": [
+      "it('should ${testTitle}', async () => {",
+      "",
+      "jest.spyOn(${RequestClass}, '${Protocol}').mockReturnValue(Promise.resolve(${ResolveValue}));",
+      "",
+      "const ApiCallResult = await ${TestedServiceFunciton}();",
+      "",
+      "expect(${RequestClass}.${Protocol}).toHaveBeenCalledWith('/api/${APIPath}');",
+      "",
+      "expect(ApiCallResult).toEqual(${ExcpectedResult});",
+      "",
+      "});"
+    ],
+    "description": "99JestServiceTest"
+  },
+  "99JestInputValue": {
+    "prefix": "99JestInputValue",
+    "body": [
+      "await wrapper.find('input[id=\"${id}\"]').setValue('${value}');"
+    ],
+    "description": "99JestInputValue"
+  },
+  "99JestIt": {
+    "prefix": "99JestIt",
+    "body": [
+      " it('should ${description}', async () => {",
+      "${code}",
+      "});"
+    ],
+    "description": "99JestIt"
+  },
+  "99JestFind": {
+    "prefix": "99JestFind",
+    "body": [
+      "//input[id='name']",
+      "const ${variable} = wrapper.find('${selector}');"
+    ],
+    "description": "99JestFind"
+  },
+  "99JestTrigger": {
+    "prefix": "99JestTrigger",
+    "body": [
+      "await wrapper.find('${selector}').trigger('${event}');",
+      "await wrapper.vm.$nextTick();"
+    ],
+    "description": "99JestTrigger"
+  },
+  "99JestClick": {
+    "prefix": "99JestClick",
+    "body": [
+      "const ${BUTTON_NAME} = wrapper.findAll('${selector}');",
+      "await ${BUTTON_NAME}.trigger('click');",
+      "await wrapper.vm.$nextTick();"
+    ],
+    "description": "99JestClick"
+  },
+  "99JestExpectText": {
+    "prefix": "99JestExpectText",
+    "body": [
+      "const ${BUTTON_NAME} = wrapper.find('${selector}');",
+      "expect(${BUTTON_NAME}.text()).toContain('${text}');"
+    ],
+    "description": "99JestExpectText"
+  },
+  "99JestExpectAttribut": {
+    "prefix": "99JestExpectAttribut",
+    "body": [
+      "const ${BUTTON_NAME} = wrapper.find('${selector}');",
+      "expect(${BUTTON_NAME}.attributes('${prop}')).toBe('${value}');"
+    ],
+    "description": "99JestExpectAttribut"
+  },
+  "99JestPiniaStore": {
+    "prefix": "99JestPiniaStore",
+    "body": [
+      "import { setActivePinia, createPinia } from 'pinia';",
+      "import { ${1:useMyStore} } from './${2:myStore}';",
+      "",
+      "// Test for store state mutation",
+      "test('${3:should update state with mutation}', () => {",
+      "  // Arrange: Set up Pinia and create a store instance",
+      "  setActivePinia(createPinia());",
+      "  const store = ${1:useMyStore}();",
+      "",
+      "  // Act: Update the store state",
+      "  store.${4:setData}('new value');",
+      "",
+      "  // Assert: Verify that the state has been updated",
+      "  expect(store.${5:state}.data).toBe('new value');",
+      "});",
+      "",
+      "// Test for actions",
+      "test('${6:should call API and update state}', async () => {",
+      "  // Arrange: Set up Pinia and create a store instance",
+      "  setActivePinia(createPinia());",
+      "  const store = ${1:useMyStore}();",
+      "  const data = { key: 'value' };",
+      "  jest.spyOn(store, '${7:fetchData}').mockResolvedValue(data);",
+      "",
+      "  // Act: Call an action",
+      "  await store.${7:fetchData}();",
+      "",
+      "  // Assert: Verify that the state has been updated",
+      "  expect(store.${5:state}.data).toEqual(data);",
+      "});",
+      "",
+      "// Test for getters",
+      "test('${8:should compute value with getter}', () => {",
+      "  // Arrange: Set up Pinia and create a store instance",
+      "  setActivePinia(createPinia());",
+      "  const store = ${1:useMyStore}();",
+      "",
+      "  // Act: Access a getter",
+      "  const result = store.${9:getComputedValue};",
+      "",
+      "  // Assert: Verify the computed value",
+      "  expect(result).toBe(${10:expectedValue});",
+      "});"
+    ],
+    "description": "Jest test snippet for a Pinia store with comments explaining each step."
+  },
+  "99jest-render-structure": {
+    "prefix": "99jest-render-structure",
+    "body": [
+      "it('should render without errors and match snapshot', () => {",
+      "  const wrapper = shallowMount(ComponentToTest);",
+      "  expect(wrapper.exists()).toBe(true);",
+      "  expect(wrapper.html()).toMatchSnapshot();",
+      "});"
+    ],
+    "description": "99jest: Rendering and Structure Test"
+  },
+  "99jest-data-props": {
+    "prefix": "99jest-data-props",
+    "body": [
+      "it('should display data and props correctly', () => {",
+      "  const testData = '${1:TestValue}';",
+      "  const wrapper = shallowMount(ComponentToTest, {",
+      "    propsData: {",
+      "      prop1: testData,",
+      "      prop2: ${2:AnotherValue}",
+      "    },",
+      "    data() {",
+      "      return {",
+      "        data1: testData,",
+      "        data2: ${3:AnotherData}",
+      "      };",
+      "    }",
+      "  });",
+      "  expect(wrapper.text()).toContain(testData);",
+      "  expect(wrapper.props().prop1).toBe(testData);",
+      "  // Add more assertions as needed",
+      "});"
+    ],
+    "description": "99jest: Data and Props Test"
+  },
+  "99jest-computed-methods": {
+    "prefix": "99jest-computed-methods",
+    "body": [
+      "it('should test computed properties and methods', () => {",
+      "  const wrapper = shallowMount(ComponentToTest);",
+      "  const computedValue = wrapper.vm.${1:computedPropertyName};",
+      "  // Add assertions for computedValue and method calls",
+      "   expect(computedValue).toBe(${2:expectedValue});",
+      "});"
+    ],
+    "description": "99jest: Computed Properties and Methods Test"
+  },
+  "99jest-event-handling": {
+    "prefix": "99jest-event-handling",
+    "body": [
+      "it('should test event handling', () => {",
+      "  const wrapper = shallowMount(ComponentToTest);",
+      "  // Trigger events and assert component's response",
+      "  wrapper.vm.$emit('${1:eventName}', ${2:eventData});",
+      "  // Add assertions for the component's response",
+      "});"
+    ],
+    "description": "99jest: Event Handling Test"
+  },
+  "99jest-lifecycle-conditional": {
+    "prefix": "99jest-lifecycle-conditional",
+    "body": [
+      "it('should test lifecycle hooks and conditional rendering', () => {",
+      "  const wrapper = shallowMount(ComponentToTest);",
+      "  // Test lifecycle hooks and conditional rendering",
+      "   expect(wrapper.find('${1:elementSelector}').exists()).toBe(true);",
+      "});"
+    ],
+    "description": "99jest: Lifecycle Hooks and Conditional Rendering Test"
+  },
+  "99jest-vuex-directives": {
+    "prefix": "99jest-vuex-directives",
+    "body": [
+      "it('should test Vuex integration and custom directives', () => {",
+      "  const wrapper = shallowMount(ComponentToTest, {",
+      "    // Add Vuex store and custom directives if applicable",
+      "  });",
+      "  // Test Vuex interactions and custom directives",
+      "   expect(wrapper.vm.$store.state.${1:storeProperty}).toBe(${2:expectedValue});",
+      "});"
+    ],
+    "description": "99jest: Vuex Integration and Custom Vue Directives Test"
+  },
+  "99jest-form-router": {
+    "prefix": "99jest-form-router",
+    "body": [
+      "it('should test form handling and router integration', () => {",
+      "  const wrapper = shallowMount(ComponentToTest, {",
+      "    // Add form inputs and router if applicable",
+      "  });",
+      "  // Test form handling and router integration",
+      "   wrapper.find('${1:formInputSelector}').setValue('${2:inputValue}');",
+      "});"
+    ],
+    "description": "99jest: Form Handling and Router Integration Test"
+  },
+  "99jest-api-async": {
+    "prefix": "99jest-api-async",
+    "body": [
+      "it('should test API requests and asynchronous operations', async () => {",
+      "  // Mock API requests and test async behavior",
+      "  const wrapper = shallowMount(ComponentToTest);",
+      "  await wrapper.vm.$nextTick();",
+      "  // Assertions for async operations",
+      "  expect(wrapper.find('${1:elementSelector}').exists()).toBe(true);",
+      "});"
+    ],
+    "description": "99jest: API Requests and Asynchronous Operations Test"
+  }
+}

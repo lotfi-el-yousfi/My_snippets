@@ -1,0 +1,21 @@
+{
+  "useEffect": {
+    "body": [
+      "  useEffect(() => {\r",
+      "    if (selectedItem) {\r",
+      "      console.log('Selected Item changed:', selectedItem)\r",
+      "    }\r",
+      "  }, [selectedItem])\r",
+      ""
+    ],
+    "prefix": "useEffect",
+    "description": ""
+  },
+  "useState": {
+    "body": [
+      "  const [${1:var}, set${1:var}] = useState(${2:init})\r"
+    ],
+    "prefix": "useState",
+    "description": ""
+  }
+}

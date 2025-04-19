@@ -1,0 +1,169 @@
+<templateSet group="myJavaSnippets">
+  <template name="99entity" value="@Entity&#10;@Getter&#10;@Setter&#10;@NoArgsConstructor&#10;@AllArgsConstructor&#10;@Builder&#10;@Table(name = &quot;$entityName$&quot;)&#10;public class $entityName$ {&#10;&#10;    @Id&#10;    @GeneratedValue(strategy = GenerationType.IDENTITY)&#10;    private int id;&#10;&#10;    @Column(nullable = false, unique = true)&#10;    private String username;&#10;&#10;    @Column(nullable = false, unique = true)&#10;    private String email;&#10;&#10;    @Column(nullable = false)&#10;    private String password;&#10;&#10;    @Temporal(TemporalType.TIMESTAMP)&#10;    @Column(name = &quot;created_at&quot;, updatable = false)&#10;    private Date createdAt;&#10;&#10;    @PrePersist&#10;    protected void onCreate() {&#10;        this.createdAt = new Date();&#10;    }&#10;}&#10;" description="create a spring boot entity" toReformat="false" toShortenFQNames="true">
+    <variable name="entityName" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99controller" value="@RestController&#10;@RequestMapping(&quot;/api/$variable$s&quot;)&#10;public class $table$Controller {&#10;&#10;    private final $table$Service $variable$Service;&#10;&#10;    public $table$Controller($table$Service $variable$Service) {&#10;        this.$variable$Service = $variable$Service;&#10;    }&#10;&#10;    @GetMapping&#10;    public List&lt;$table$&gt; getAll$table$s() {&#10;        return $variable$Service.getAll$table$s();&#10;    }&#10;&#10;    @GetMapping(&quot;/{id}&quot;)&#10;    public ResponseEntity&lt;$table$&gt; get$table$ById(@PathVariable int id) {&#10;        return $variable$Service.get$table$ById(id)&#10;                .map(ResponseEntity::ok)&#10;                .orElse(ResponseEntity.notFound().build());&#10;    }&#10;&#10;    @PostMapping&#10;    public ResponseEntity&lt;$table$&gt; add$table$(@Valid @RequestBody $table$ $variable$) {&#10;        return ResponseEntity.status(HttpStatus.CREATED).body($variable$Service.add$table$($variable$));&#10;    }&#10;&#10;    @PutMapping(&quot;/{id}&quot;)&#10;    public ResponseEntity&lt;$table$&gt; update$table$(@PathVariable int id, @Valid @RequestBody $table$ $variable$) {&#10;        return $variable$Service.update$table$(id, $variable$)&#10;                .map(ResponseEntity::ok)&#10;                .orElse(ResponseEntity.notFound().build());&#10;    }&#10;&#10;    @DeleteMapping(&quot;/{id}&quot;)&#10;    public ResponseEntity&lt;Void&gt; delete$table$(@PathVariable int id) {&#10;        return $variable$Service.delete$table$(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();&#10;    }&#10;}&#10;" description="generate controller" toReformat="false" toShortenFQNames="true">
+    <variable name="variable" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="table" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99service" value="&#10;@Service&#10;@RequiredArgsConstructor&#10;public class $table$Service {&#10;&#10;    private final $table$Repository $variable$Repository;&#10;&#10;    public $table$Service($table$Repository $variable$Repository) {&#10;        this.$variable$Repository = $variable$Repository;&#10;    }&#10;&#10;    public List&lt;$table$&gt; getAll$table$s() {&#10;        return $variable$Repository.findAll();&#10;    }&#10;&#10;    public Optional&lt;$table$&gt; get$table$ById(int id) {&#10;        return $variable$Repository.findById(id);&#10;    }&#10;&#10;    public $table$ add$table$($table$ $variable$) {&#10;        return $variable$Repository.save($variable$);&#10;    }&#10;&#10;    public Optional&lt;$table$&gt; update$table$(int id, $table$ new$table$) {&#10;        return $variable$Repository.findById(id).map(existing$table$ -&gt; {&#10;            existing$table$.setName(new$table$.getName());&#10;&#10;            return $variable$Repository.save(existing$table$);&#10;        });&#10;    }&#10;&#10;    public boolean delete$table$(int id) {&#10;        if ($variable$Repository.existsById(id)) {&#10;            $variable$Repository.deleteById(id);&#10;            return true;&#10;        }&#10;        return false;&#10;    }&#10;}&#10;" description="generate service" toReformat="false" toShortenFQNames="true">
+    <variable name="table" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="variable" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99repository" value="  &#10;@Repository&#10;public interface $User$Repository extends JpaRepository&lt;$User$, $type$&gt; {&#10;}&#10;" description="generate repository" toReformat="false" toShortenFQNames="true">
+    <variable name="User" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="type" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99jpa_onetoone" value="@OneToOne(cascade = CascadeType.ALL)&#10;@JoinColumn(name = &quot;$foreignKey$_id&quot;)&#10;private $RelatedEntity$ $relatedEntity$;&#10;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="foreignKey" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="RelatedEntity" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="relatedEntity" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99jpa_onetomany" value="@OneToMany(mappedBy = &quot;$mappedBy$&quot;, cascade = CascadeType.ALL, orphanRemoval = true)&#10;private List&lt;$RelatedEntity$&gt; $relatedEntities$ = new ArrayList&lt;&gt;();&#10;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="mappedBy" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="RelatedEntity" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="relatedEntities" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99jpa_manytoone" value="@ManyToOne&#10;@JoinColumn(name = &quot;$foreignKey$_id&quot;)&#10;private $RelatedEntity$ $relatedEntity$;&#10;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="foreignKey" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="RelatedEntity" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="relatedEntity" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99jpa_manytomany" value="@ManyToMany&#10;@JoinTable(&#10;    name = &quot;$joinTable$&quot;,&#10;    joinColumns = @JoinColumn(name = &quot;$thisForeignKey$_id&quot;),&#10;    inverseJoinColumns = @JoinColumn(name = &quot;$otherForeignKey$_id&quot;)&#10;)&#10;private Set&lt;$RelatedEntity$&gt; $relatedEntities$ = new HashSet&lt;&gt;();&#10;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="joinTable" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="thisForeignKey" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="otherForeignKey" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="RelatedEntity" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="relatedEntities" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99sequenceid" value="@SequenceGenerator(name = &quot;$table$_id_seq&quot;, sequenceName = &quot;$table$_seq&quot;, allocationSize = 1)&#10;" description="postgress sequence id //write it after @table" toReformat="false" toShortenFQNames="true">
+    <variable name="table" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99inject" value="&#10;    private final $classname$ $classname$;&#10;&#10;    public ProductService($classname$ $classname$) {&#10;        this.$classname$ = $classname$;&#10;    }" description="dependency injection" toReformat="false" toShortenFQNames="true">
+    <variable name="classname" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99dto_clas" value="@NoArgsConstructor&#10;@AllArgsConstructor&#10;@Builder&#10;@Data&#10;public class $class$DTO {&#10;    private int id;&#10;    private String name; &#10;}&#10;" description="make dto class" toReformat="false" toShortenFQNames="true">
+    <variable name="class" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99mapper_dto" value="&#10;@Mapper(componentModel = &quot;spring&quot;)&#10;public interface $class$Mapper {&#10;    $class$Mapper INSTANCE = Mappers.getMapper($class$Mapper.class);&#10;&#10;    $class$DTO toDto($class$     $var$);&#10;    $class$ toEntity($class$DTO $var$DTO);&#10;}&#10; " description="make mapper with mapstruct" toReformat="false" toShortenFQNames="true">
+    <variable name="class" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="var" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99exception" value=" &#10;public class $exception$Exception extends RuntimeException {&#10;    public $exception$Exception(String message) {&#10;        super(message);&#10;    }&#10;}&#10;" description="make exception class" toReformat="false" toShortenFQNames="true">
+    <variable name="exception" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99globalexception_controlleradvice" value=" &#10;@RestControllerAdvice&#10;public class GlobalExceptionHandler {&#10;&#10;    @ExceptionHandler(ResourceNotFoundException.class)&#10;    public ResponseEntity&lt;Map&lt;String, Object&gt;&gt; handleResourceNotFound(ResourceNotFoundException ex) {&#10;        Map&lt;String, Object&gt; body = new LinkedHashMap&lt;&gt;();&#10;        body.put(&quot;timestamp&quot;, LocalDateTime.now());&#10;        body.put(&quot;status&quot;, HttpStatus.NOT_FOUND.value());&#10;        body.put(&quot;error&quot;, &quot;Not Found&quot;);&#10;        body.put(&quot;message&quot;, ex.getMessage());&#10;&#10;        return new ResponseEntity&lt;&gt;(body, HttpStatus.NOT_FOUND);&#10;    }&#10;&#10;    @ExceptionHandler(Exception.class)&#10;    public ResponseEntity&lt;Map&lt;String, Object&gt;&gt; handleGeneralException(Exception ex) {&#10;        Map&lt;String, Object&gt; body = new LinkedHashMap&lt;&gt;();&#10;        body.put(&quot;timestamp&quot;, LocalDateTime.now());&#10;        body.put(&quot;status&quot;, HttpStatus.INTERNAL_SERVER_ERROR.value());&#10;        body.put(&quot;error&quot;, &quot;Internal Server Error&quot;);&#10;        body.put(&quot;message&quot;, ex.getMessage());&#10;&#10;        return new ResponseEntity&lt;&gt;(body, HttpStatus.INTERNAL_SERVER_ERROR);&#10;    }&#10;    @ExceptionHandler(MethodArgumentNotValidException.class)&#10;public ResponseEntity&lt;Map&lt;String, Object&gt;&gt; handleValidationExceptions(MethodArgumentNotValidException ex) {&#10;    Map&lt;String, Object&gt; body = new LinkedHashMap&lt;&gt;();&#10;    body.put(&quot;timestamp&quot;, LocalDateTime.now());&#10;    body.put(&quot;status&quot;, HttpStatus.BAD_REQUEST.value());&#10;    body.put(&quot;error&quot;, &quot;Validation Error&quot;);&#10;&#10;    List&lt;String&gt; errors = ex.getBindingResult()&#10;            .getFieldErrors()&#10;            .stream()&#10;            .map(error -&gt; error.getField() + &quot;: &quot; + error.getDefaultMessage())&#10;            .toList();&#10;    body.put(&quot;message&quot;, errors);&#10;&#10;    return new ResponseEntity&lt;&gt;(body, HttpStatus.BAD_REQUEST);&#10;}&#10;&#10;}&#10;" description="make a global exception handler" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99service_dto" value=" &#10;@Service&#10;@RequiredArgsConstructor&#10;public class $class$Service {&#10;    private final $class$Repository $var$Repository;&#10;    private final $class$Mapper $var$Mapper;&#10;&#10;    @Transactional&#10;    public $class$DTO create$class$($class$DTO $var$DTO) {&#10;        if ($var$Repository.findByEmail($var$DTO.getEmail()).isPresent()) {&#10;            throw new IllegalArgumentException(&quot;Email is already in use&quot;);&#10;        }&#10;        $class$ $var$ = $var$Mapper.toEntity($var$DTO);&#10;        return $var$Mapper.toDto($var$Repository.save($var$));&#10;    }&#10;&#10;    @Transactional(readOnly = true)&#10;    public List&lt;$class$DTO&gt; getAll$class$s() {&#10;        return $var$Repository.findAll()&#10;                .stream()&#10;                .map($var$Mapper::toDto)&#10;                .collect(Collectors.toList());&#10;    }&#10;&#10;    @Transactional(readOnly = true)&#10;    public $class$DTO get$class$ById(Long id) {&#10;        $class$ $var$ = $var$Repository.findById(id)&#10;                .orElseThrow(() -&gt; new IllegalArgumentException(&quot;$class$ not found&quot;));&#10;        return $var$Mapper.toDto($var$);&#10;    }&#10;&#10;    @Transactional&#10;    public $class$DTO update$class$(Long id, $class$DTO $var$DTO) {&#10;        $class$ $var$ = $var$Repository.findById(id)&#10;                .orElseThrow(() -&gt; new IllegalArgumentException(&quot;$class$ not found&quot;));&#10;        $var$.setFirstName($var$DTO.getFirstName());&#10;        $var$.setLastName($var$DTO.getLastName());&#10;        $var$.setEmail($var$DTO.getEmail());&#10;        return $var$Mapper.toDto($var$Repository.save($var$));&#10;    }&#10;&#10;    @Transactional&#10;    public void delete$class$(Long id) {&#10;        if (!$var$Repository.existsById(id)) {&#10;            throw new IllegalArgumentException(&quot;$class$ not found&quot;);&#10;        }&#10;        $var$Repository.deleteById(id);&#10;    }&#10;}&#10;" description="service with dto conversion" toReformat="false" toShortenFQNames="true">
+    <variable name="class" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="var" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="webclient_init" value=" &#10;private final WebClient webClient;&#10;&#10;public $constructor_name$(WebClient.Builder webClientBuilder) {&#10;String baseUrl = $BASE_URL$ + &quot;/$ressource_URL$&quot;;&#10;UriBuilderFactory uriBuilderFactory = new DefaultUriBuilderFactory(baseUrl);&#10;&#10;this.webClient = webClientBuilder&#10;    .uriBuilderFactory(uriBuilderFactory) &#10;    .filter($FILTER$)&#10;    .defaultHeader(\&quot;Authorization\&quot;, \&quot;Bearer $TOKEN$\&quot;)&#10;    .build();&#10;}" description="init webclient" toReformat="false" toShortenFQNames="true">
+    <variable name="constructor_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="BASE_URL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ressource_URL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TOKEN" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FILTER" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="webclient" value=" return webClient.$METHOD$()&#10;            .uri(\&quot;/$RESOURCE$/\&quot;, $param$)&#10;            .$bodyValue$() //bodyValue(param) if not reactive&#10;            .retrieve()&#10;            .onStatus(HttpStatus::is4xxClientError, response -&gt; $HANDLE_4XX_ERROR$(response))&#10;            .onStatus(HttpStatus::is5xxServerError, response -&gt; $HANDLE_5XX_ERROR$(response))&#10;            .bodyToMono($RESPONSE_CLASS$.class)&#10;            .transform(doOnTerminateTimeMono(time -&gt; log.debug(&#10;                \&quot;Animco: $HTTP_METHOD$ $URL$ in {}ms\&quot;, $PARAMS$, time)))&#10;            .retryWhen(Retry.backoff($RETRY_COUNT$, Duration.ofSeconds($RETRY_DELAY$)));" description="return a web client call" toReformat="false" toShortenFQNames="true">
+    <variable name="METHOD" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="RESOURCE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="param" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="bodyValue" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="HANDLE_4XX_ERROR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="HANDLE_5XX_ERROR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="RESPONSE_CLASS" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="HTTP_METHOD" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="URL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PARAMS" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="RETRY_COUNT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="RETRY_DELAY" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="log" value="System.out.println ($code$);" description="println" toReformat="false" toShortenFQNames="true">
+    <variable name="code" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99security_config" value=" &#10;&#10;@Configuration&#10;@EnableWebSecurity&#10;public class SecurityConfig {&#10;&#10;&#10;    private final JwtFilter jwtFilter;&#10;&#10;    public SecurityConfig(JwtFilter jwtFilter) {&#10;        this.jwtFilter = jwtFilter;&#10;    }&#10;&#10;    @Bean&#10;    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {&#10;        return http&#10;                .csrf(AbstractHttpConfigurer::disable)&#10;                .sessionManagement(session -&gt; session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))&#10;                .authorizeHttpRequests(auth -&gt; auth&#10;                        .requestMatchers(&quot;/api/auth/**&quot;, &quot;/h2-console/**&quot;).permitAll()&#10;                        .anyRequest().authenticated()&#10;                )&#10;                .headers(headers -&gt; headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable)) // for H2 console&#10;                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)&#10;                .build();&#10;    }&#10;&#10;&#10;    @Bean&#10;    public PasswordEncoder passwordEncoder() {&#10;        return new BCryptPasswordEncoder();&#10;    }&#10;&#10;    @Bean&#10;    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {&#10;        return config.getAuthenticationManager();&#10;    }&#10;}&#10;" description="make a secrity config class for jwt" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99jwtutil" value="@Component&#10;public class JwtUtil {&#10;    private final String SECRET_KEY = &quot;Zg3kLm9PxTqVb1XeYuFgHi2JcRwNzA8B136161651651561684461313123&quot;;&#10;    private final long EXPIRATION_TIME = 86400000; // 1 day&#10;&#10;    public String generateToken(String username) {&#10;        return Jwts.builder()&#10;                .setSubject(username)&#10;                .setIssuedAt(new Date())&#10;                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))&#10;                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)&#10;                .compact();&#10;    }&#10;&#10;    public String extractUsername(String token) {&#10;        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody().getSubject();&#10;    }&#10;&#10;    public boolean validateToken(String token, String username) {&#10;        return extractUsername(token).equals(username) &amp;&amp; !isTokenExpired(token);&#10;    }&#10;&#10;    private boolean isTokenExpired(String token) {&#10;        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody().getExpiration().before(new Date());&#10;    }&#10;}" description="make token utils" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99h2config" value="#h2 console config&#10;spring.h2.console.enabled=true&#10;spring.h2.console.path=/h2-console&#10;spring.datasource.url=jdbc:h2:mem:mysql_user_service;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE&#10;spring.datasource.driverClassName=org.h2.Driver&#10;spring.datasource.username=sa&#10;spring.datasource.password=&#10;spring.jpa.database-platform=org.hibernate.dialect.H2Dialect" description="h2 configuration" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="Properties" value="true" />
+    </context>
+  </template>
+  <template name="99once_Filter" value=" &#10;@Configuration&#10;public class JwtFilter extends OncePerRequestFilter {&#10;&#10;&#10;    private final JwtUtil jwtUtil;&#10;&#10;    private final UserDetailsService userDetailsService;&#10;&#10;    public JwtFilter( JwtUtil jwtUtil, UserDetailsService userDetailsService) {&#10;        this.jwtUtil = jwtUtil;&#10;        this.userDetailsService = userDetailsService;&#10;    }&#10;&#10;&#10;    @Override&#10;    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)&#10;            throws ServletException, IOException {&#10;&#10;&#10;        String token = request.getHeader(&quot;Authorization&quot;);&#10;&#10;        if (token != null &amp;&amp; token.startsWith(&quot;Bearer &quot;)) {&#10;            token = token.substring(7);&#10;            String username = jwtUtil.extractUsername(token);&#10;&#10;            if (username != null &amp;&amp; SecurityContextHolder.getContext().getAuthentication() == null) {&#10;                UserDetails userDetails = userDetailsService.loadUserByUsername(username);&#10;                if (jwtUtil.validateToken(token, userDetails.getUsername())) {&#10;                    SecurityContextHolder.getContext().setAuthentication(&#10;                            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities())&#10;                    );&#10;                }&#10;            }&#10;        }&#10;&#10;        chain.doFilter(request, response);&#10;    }&#10;    @Override&#10;    protected boolean shouldNotFilter(HttpServletRequest request) {&#10;        String path = request.getServletPath();&#10;        System.out.println(&quot;JwtFilter applied to path: &quot;&#10;                + request.getServletPath());&#10;&#10;        return path.equals(&quot;/auth/login&quot;) ||&#10;                path.equals(&quot;/auth/test&quot;) ||&#10;                path.startsWith(&quot;/h2-console&quot;);&#10;    }&#10;&#10;}&#10;&#10;" description="onceperrequest filter" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99feign_interface" value="@FeignClient(name = &quot;$service_name$&quot;, url = &quot;${application.config.$service_name$-url}&quot;)&#10;public interface StudentClient {&#10;//@enablefeign in app&#10;    @GetMapping(&quot;$endpoint$&quot;)&#10;   $return_type$ $function$(@PathVariable(&quot;school-id&quot;) Integer Id);&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="service_name" expression="service_name" defaultValue="service_name" alwaysStopAt="true" />
+    <variable name="endpoint" expression="endpoint" defaultValue="endpoint" alwaysStopAt="true" />
+    <variable name="return_type" expression="return_type" defaultValue="return_type" alwaysStopAt="true" />
+    <variable name="function" expression="function" defaultValue="function" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="99swagger_doc" value=" @Operation(&#10;            summary = &quot;Get customer by ID&quot;,&#10;            description = &quot;Retrieve a customer's details using their unique identifier&quot;&#10;    )&#10;    @ApiResponses(value = {&#10;            @ApiResponse(&#10;                    responseCode = &quot;200&quot;,&#10;                    description = &quot;Customer found successfully&quot;,&#10;                    content = @Content(&#10;                            mediaType = &quot;application/json&quot;,&#10;                            schema = @Schema(implementation = CustomerDTO.class)&#10;                    )&#10;            ),&#10;            @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Customer not found&quot;),&#10;            @ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;)&#10;    })" description="opration doc for controller" toReformat="false" toShortenFQNames="true" />
+</templateSet>
