@@ -1,6 +1,6 @@
 {
   "": {
-    "prefix": "99pinia_sotre_2",
+    "prefix": "99defineStore_pinia_sotre_2",
     "body": [
       "import { defineStore } from 'pinia'",
       "",
@@ -30,7 +30,7 @@
     "description": ""
   },
   "99PiniaStore": {
-    "prefix": "99PiniaStore_3",
+    "prefix": "99defineStore_PiniaStore_3",
     "body": [
       "import { defineStore } from 'pinia';",
       "import { ref, computed } from 'vue';",

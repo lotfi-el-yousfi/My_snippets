@@ -1,4 +1,54 @@
 {
+  "Vue 3 Composition Snippet": {
+    "prefix": "99vue3",
+    "body": [
+      "<script setup lang=\"ts\">",
+      "import { onMounted, ref } from 'vue';",
+      "import { use${1:StoreName}Store } from '@/stores/${1:storeName}';",
+      "",
+      "const props = defineProps<{",
+      "  ${2:propName}: ${3:String}",
+      "}>();",
+      "",
+      "const emit = defineEmits<{",
+      "  (e: '${4:eventName}', payload: ${5:any}): void",
+      "}>();",
+      "",
+      "const ${6:localRef} = ref(${7:null});",
+      "",
+      "const store = use${1:StoreName}Store();",
+      "",
+      "onMounted(() => {",
+      "  console.log('mounted');",
+      "});",
+      "",
+      "function ${8:callStoreAction}() {",
+      "  store.${9:storeAction}(${10:arguments});",
+      "}",
+      "",
+      "</script>"
+    ],
+    "description": "Vue 3 Composition API snippet with props, emits, refs, and a store method call"
+  },
+  "": {
+    "prefix": "router_push",
+    "body": [
+      "import { useRouter } from 'vue-router';",
+      "",
+      "const router = useRouter();",
+      " router.push({ name: '${2:RouteName}' }); "
+    ],
+    "description": ""
+  },
+  "": {
+    "prefix": "route_params",
+    "body": [
+      "import {  useRoute } from 'vue-router';",
+      "const route = useRoute();",
+      "  const ${3:paramValue} = route.params.${4:paramName}; "
+    ],
+    "description": ""
+  },
   "99 DefineProps": {
     "prefix": "99vueDefineProps",
     "body": [

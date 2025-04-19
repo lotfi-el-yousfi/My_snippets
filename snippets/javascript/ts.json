@@ -1,4 +1,14 @@
 {
+  "": {
+    "prefix": "99service_call",
+    "body": [
+      "export   ${call} = ( ${param}:${type}) => {",
+      "  const url = `${url}`;",
+      "  return axios.${protocole}<${retrun_type}[]>(url);",
+      "}"
+    ],
+    "description": "TypeScript Function: getCommercialOffers"
+  },
   "TS Function": {
     "prefix": "99TSFunction",
     "body": [
